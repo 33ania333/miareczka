@@ -17,17 +17,17 @@ img = cv.imread("myszka.jpg", 3)
 obraz = przetwarzanie.Measure(img, "myszka")
 obraz.run_processing()
 
+# img = cv.imread("szczotka.jpg", 3)
+# obraz = przetwarzanie.Measure(img, "szczotka")
+# obraz.run_processing()
+
+img = cv.imread("zakreslacz1.jpg", 3)
+obraz = przetwarzanie.Measure(img, "zakreslacz1")
+obraz.run_processing()
+
+img = cv.imread("zakreslacz2.jpg", 3)
+obraz = przetwarzanie.Measure(img, "zakreslacz2")
+obraz.run_processing()
+
 cv.waitKey(0)
-
-# img = cv.imread("swieczka.jpg", 3)
-# obraz = przetwarzanie.Measure(img, "swieczka")
-# obraz.run_processing()
-
-# img = cv.imread("dlugopis.jpg", 3)
-# obraz = przetwarzanie.Measure(img, "dlugopis")
-# obraz.run_processing()
-
-# img = cv.imread("pomadka.jpg", 3)
-# obraz = przetwarzanie.Measure(img, "pomadka")
-# obraz.run_processing()
 

@@ -11,9 +11,6 @@ def resize(filename):
     cv2.imwrite(filename, newimg)
 
 
-resize("dlugopis.jpg")
-resize("nawoz.jpg")
-resize("piornik.jpg")
-resize("pomadka.jpg")
-resize("swieczka.jpg")
-resize("szczur.jpg")
+resize("szczotka.jpg")
+resize("zakreslacz1.jpg")
+resize("zakreslacz2.jpg")
