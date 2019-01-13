@@ -19,10 +19,6 @@ obraz.run_processing()
 
 cv.waitKey(0)
 
-# img = cv.imread("nawoz.jpg", 3)
-# obraz = przetwarzanie.Measure(img, "nawoz")
-# obraz.run_processing()
-
 # img = cv.imread("swieczka.jpg", 3)
 # obraz = przetwarzanie.Measure(img, "swieczka")
 # obraz.run_processing()
