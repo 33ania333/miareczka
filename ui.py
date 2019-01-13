@@ -26,11 +26,12 @@ cv.waitKey(0)
 # img = cv.imread("swieczka.jpg", 3)
 # obraz = przetwarzanie.Measure(img, "swieczka")
 # obraz.run_processing()
-# #
+
 # img = cv.imread("dlugopis.jpg", 3)
 # obraz = przetwarzanie.Measure(img, "dlugopis")
 # obraz.run_processing()
-#
+
 # img = cv.imread("pomadka.jpg", 3)
 # obraz = przetwarzanie.Measure(img, "pomadka")
 # obraz.run_processing()
+
