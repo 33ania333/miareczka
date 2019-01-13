@@ -15,6 +15,22 @@ def takeSecond(elem):
     return elem[1]
 
 
+def getNiceLimits(img):
+    hsv1 = img[int(img.shape[0] / 2)][0]
+    hsv2 = img[int(img.shape[0] / 2)][img.shape[1] - 1]
+    hsv3 = img[0][int(img.shape[1] / 2)]
+    hsv4 = img[0][int(img.shape[1] / 2)]
+    margin = 80
+    bottom = (np.int(max(min(hsv1[0], hsv2[0], hsv3[0], hsv4[0]) - margin, 0)),
+              np.int(max(min(hsv1[1], hsv2[1], hsv3[1], hsv4[1]) - margin, 0)),
+              np.int(max(min(hsv1[2], hsv2[2], hsv3[2], hsv4[2]) - margin, 0)))
+    top = (np.int(min(max(hsv1[0], hsv2[0], hsv3[0], hsv4[0]) + margin, 255)),
+           np.int(min(max(hsv1[1], hsv2[1], hsv3[1], hsv4[1]) + margin, 255)),
+           np.int(min(max(hsv1[2], hsv2[2], hsv3[2], hsv4[2]) + margin, 255)))
+
+    return bottom, top
+
+
 class Measure:
     def __init__(self, image, tittle):
         self.img = image
@@ -89,31 +105,22 @@ class Measure:
     def extract_object(self):
 
         hsv = cv.cvtColor(self.img, cv.COLOR_BGR2HSV)
-        v1 = hsv[int(hsv.shape[0]/2)][0][2]
-        v2 = hsv[int(hsv.shape[0]/2)][hsv.shape[1] - 1][2]
-        v3 = hsv[0][int(hsv.shape[1]/2)][2]
-        v4 = hsv[0][int(hsv.shape[1]/2)][2]
-
-        v = np.int(np.mean([v1, v2, v3, v4]))
-        bottom = (0, 0, 0)
-        top = (255, 255, v-70)
-        object_threshold = cv.inRange(hsv, bottom, top)
+        bottom, top = getNiceLimits(hsv)
+        background_threshold = cv.inRange(hsv, bottom, top)
+        object_threshold = cv.bitwise_not(background_threshold)
+        kernel = cv.getStructuringElement(cv.MORPH_RECT, (20, 20))
+        object_threshold = cv.morphologyEx(object_threshold, cv.MORPH_CLOSE, kernel)
         # cv.imshow("obiekt", object_threshold)
         self.object = cv.bitwise_and(object_threshold, self.tape)
         # cv.imshow("obiekt", self.object)
 
     def measure_object(self):
-
-        object_edges = cv.Canny(self.object, 50, 100)
-        kernel = cv.getStructuringElement(cv.MORPH_RECT, (10, 10))
-        object_edges = cv.morphologyEx(object_edges, cv.MORPH_CLOSE, kernel)
-        # cv.imshow("obiekt_kontur", object_edges)
         object_contours = cv.findContours(self.object, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
         object_contours = imutils.grab_contours(object_contours)
         (object_contours, _) = contours.sort_contours(object_contours)
 
         for c in object_contours:
-            if cv.contourArea(c) < 4000:
+            if cv.contourArea(c) < 20000:
                 continue
 
             orig = self.img.copy()
@@ -124,21 +131,12 @@ class Measure:
             box = perspective.order_points(box)
             cv.drawContours(orig, [box.astype("int")], -1, (0, 255, 0), 2)
 
-            # for (x, y) in box:
-            #     cv.circle(orig, (int(x), int(y)), 5, (0, 0, 255), -1)
-
             (tl, tr, br, bl) = box
             (tltrX, tltrY) = midpoint(tl, tr)
             (blbrX, blbrY) = midpoint(bl, br)
             (tlblX, tlblY) = midpoint(tl, bl)
             (trbrX, trbrY) = midpoint(tr, br)
 
-            # cv.circle(orig, (int(tltrX), int(tltrY)), 5, (255, 0, 0), -1)
-            # cv.circle(orig, (int(blbrX), int(blbrY)), 5, (255, 0, 0), -1)
-            # cv.circle(orig, (int(tlblX), int(tlblY)), 5, (255, 0, 0), -1)
-            # cv.circle(orig, (int(trbrX), int(trbrY)), 5, (255, 0, 0), -1)
-
-            # draw lines between the midpoints
             cv.line(orig, (int(tltrX), int(tltrY)), (int(blbrX), int(blbrY)), (255, 0, 255), 2)
             cv.line(orig, (int(tlblX), int(tlblY)), (int(trbrX), int(trbrY)), (255, 0, 255), 2)
 
