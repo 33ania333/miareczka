@@ -1,0 +1,7 @@
+%YAML:1.0
+---
+zakreslacz2: !!opencv-matrix
+   rows: 2
+   cols: 1
+   dt: d
+   data: [ 2.6564393642659994e+01, 6.2297201847472181e+01 ]
