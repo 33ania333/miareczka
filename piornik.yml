@@ -1,0 +1,7 @@
+%YAML:1.0
+---
+piornik: !!opencv-matrix
+   rows: 2
+   cols: 1
+   dt: d
+   data: [ 7.0124615652248437e+01, 2.0359044495135993e+02 ]

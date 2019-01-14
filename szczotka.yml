@@ -1,0 +1,7 @@
+%YAML:1.0
+---
+szczotka: !!opencv-matrix
+   rows: 2
+   cols: 1
+   dt: d
+   data: [ 2.3558636503881516e+01, 1.0009581820043491e+02 ]

@@ -13,10 +13,6 @@ img = cv.imread("szczur.jpg", 3)
 obraz = przetwarzanie.Measure(img, "szczur")
 obraz.run_processing()
 
-# img = cv.imread("myszka.jpg", 3)
-# obraz = przetwarzanie.Measure(img, "myszka")
-# obraz.run_processing()
-
 img = cv.imread("szczotka.jpg", 3)
 obraz = przetwarzanie.Measure(img, "szczotka")
 obraz.run_processing()

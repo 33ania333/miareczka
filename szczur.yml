@@ -1,0 +1,7 @@
+%YAML:1.0
+---
+szczur: !!opencv-matrix
+   rows: 2
+   cols: 1
+   dt: d
+   data: [ 8.5814880050938413e+01, 2.1176846067748653e+02 ]

@@ -154,8 +154,14 @@ class Measure:
         print('height ' + self.name+' ', self.vertical)
         print('width ' + self.name+' ', self.horizontal)
 
+    def save_object_dimensions(self):
+        fs_write = cv.FileStorage(self.name + '.yml', cv.FILE_STORAGE_WRITE)
+        fs_write.write(self.name, (self.vertical, self.horizontal))
+        fs_write.release()
+
     def run_processing(self):
         self.scale()
         self.extract_object()
         self.measure_object()
         self.print_image_name_dimensions()
+        self.save_object_dimensions()

@@ -1,0 +1,7 @@
+%YAML:1.0
+---
+perfumy: !!opencv-matrix
+   rows: 2
+   cols: 1
+   dt: d
+   data: [ 1.2699160964988607e+02, 7.5666103827268032e+01 ]
