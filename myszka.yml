@@ -1,0 +1,7 @@
+%YAML:1.0
+---
+myszka: !!opencv-matrix
+   rows: 2
+   cols: 1
+   dt: d
+   data: [ 1.9196927556273783e+02, 1.2156349714150736e+02 ]
