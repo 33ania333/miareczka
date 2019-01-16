@@ -25,5 +25,9 @@ img = cv.imread("zakreslacz2.jpg", 3)
 obraz = przetwarzanie.Measure(img, "zakreslacz2")
 obraz.run_processing()
 
+img = cv.imread("myszka.jpg", 3)
+obraz = przetwarzanie.Measure(img, "myszka")
+obraz.run_processing()
+
 cv.waitKey(0)
 

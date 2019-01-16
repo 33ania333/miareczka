@@ -20,11 +20,11 @@ def getNiceLimits(img):
     hsv2 = img[int(img.shape[0] / 2)][img.shape[1] - 1]
     hsv3 = img[0][int(img.shape[1] / 2)]
     hsv4 = img[0][int(img.shape[1] / 2)]
-    margin = 80
-    bottom = (np.int(max(min(hsv1[0], hsv2[0], hsv3[0], hsv4[0]) - margin, 0)),
+    margin = 60
+    bottom = (0,
               np.int(max(min(hsv1[1], hsv2[1], hsv3[1], hsv4[1]) - margin, 0)),
               np.int(max(min(hsv1[2], hsv2[2], hsv3[2], hsv4[2]) - margin, 0)))
-    top = (np.int(min(max(hsv1[0], hsv2[0], hsv3[0], hsv4[0]) + margin, 255)),
+    top = (255,
            np.int(min(max(hsv1[1], hsv2[1], hsv3[1], hsv4[1]) + margin, 255)),
            np.int(min(max(hsv1[2], hsv2[2], hsv3[2], hsv4[2]) + margin, 255)))
 
